@@ -38,6 +38,7 @@ module.exports = {
 	},
 
 	module: {
+		// TODO: Not working on Windows for some reason
 		// preLoaders: [
 		// 	{
 		// 		test: /\.jsx?$/,

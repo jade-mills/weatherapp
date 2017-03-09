@@ -53,6 +53,20 @@ export default class Iphone extends Component {
 						<div>{this.state.humidity}</div>
 						<img class={style.icon} src= { this.state.icon}></img>
 					</div>
+
+					// <div class={ style.icons }>
+					// 	<img src="../../assets/icons/png/shorts.png" alt="Shorts">
+					// 	<img src="../../assets/icons/png/hoodie.png" alt="hoodie">
+					// 	<img src="../../assets/icons/png/tshirt.png" alt="tshirt">
+					// 	<img src="../../assets/icons/png/gloves.png" alt="gloves">
+					// 	<img src="../../assets/icons/png/hat.png" alt="hat">
+					// 	<img src="../../assets/icons/png/jacket.png" alt="jacket">
+					// 	<img src="../../assets/icons/png/jumper.png" alt="jumper">
+					// 	<img src="../../assets/icons/png/shoes.png" alt="shoes">
+					// 	<img src="../../assets/icons/png/socks.png" alt="socks">
+					// 	<img src="../../assets/icons/png/trousers.png" alt="trousers">
+					// </div>
+
 				}
 
 				<div class={ style.details }></div>
@@ -62,6 +76,23 @@ export default class Iphone extends Component {
 				</div>
 			</div>
 		);
+	}
+
+	// function to try and show the clothing icon based on weather.  
+	// Needs to be turned into array or object:key?
+	render: function() {
+		var clothingicon;
+
+		if(this.temp_c > 10){
+			clothingicon = <img src{../../assets/icons/png/shorts.png}>
+		} else {
+			clothingicon = <img src{../../assets/icons/png/trousers.png}>
+		}
+		return (
+			<div class={ style.icons }>
+				{clothingicon}
+			</div>
+		)
 	}
 
 	parseResponse = (parsed_json) => {

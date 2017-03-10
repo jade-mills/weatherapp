@@ -15,7 +15,7 @@ export default class Iphone extends Component {
 		// temperature state
 		this.state.temp = "";
 		// button display state
-		this.setState({ display: true });
+		this.setState({ display: true });	
 	}
 
 	// a call to fetch weather data via wunderground
@@ -30,14 +30,47 @@ export default class Iphone extends Component {
 			error : function(req, err){ console.log('API call failed ' + err); }
 		});
 
+	
 		// once the data grabbed, hide the button
 		this.setState({ display: false });
 	}
 
+	kitPicturesForTemp = () => {
+        if (this.state.temp < 1) {
+            return(shorts)
+        } else {
+            return(hat)
+        }
+    }
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+
+		const shorts = () => (
+  		<img src="../../assets/icons/png/shorts.png" />
+		);
+		const hat = () => (
+  		<img src="../../assets/icons/png/hat.png" />
+		);
+		const tshirt = () => (
+  		<img src="../../assets/icons/png/tshirt.png" />
+		);
+		const shoes = () => (
+  		<img src="../../assets/icons/png/shoes.png" />
+		);
+		const trousers = () => (
+  		<img src="../../assets/icons/png/trousers.png" />
+		);
+		const gloves = () => (
+  		<img src="../../assets/icons/png/gloves.png" />
+		);
+		const socks = () => (
+  		<img src="../../assets/icons/png/socks.png" />
+		);
+		const jacket = () => (
+  		<img src="../../assets/icons/png/jacket.png" />
+		);
 
 		// display all weather data
 		return (
@@ -48,27 +81,14 @@ export default class Iphone extends Component {
 						<div class={ style.city }>{ this.state.locate }</div>
 						<div class={ style.conditions }>{ this.state.cond }</div>
 						<span class={ tempStyles }>{ this.state.temp }</span>
-						<div>{this.state.wind}</div>
-						<div>{this.state.rain}</div>
-						<div>{this.state.humidity}</div>
+						<div class={ style.wind }>{this.state.wind}</div>
+						<div class={ style.rain }>{this.state.rain}</div>
+						<div class={ style.humidity }>{this.state.humidity}</div>
 						<img class={style.icon} src= { this.state.icon}></img>
+						<div {...shorts}/>
 					</div>
-
-					// <div class={ style.icons }>
-					// 	<img src="../../assets/icons/png/shorts.png" alt="Shorts">
-					// 	<img src="../../assets/icons/png/hoodie.png" alt="hoodie">
-					// 	<img src="../../assets/icons/png/tshirt.png" alt="tshirt">
-					// 	<img src="../../assets/icons/png/gloves.png" alt="gloves">
-					// 	<img src="../../assets/icons/png/hat.png" alt="hat">
-					// 	<img src="../../assets/icons/png/jacket.png" alt="jacket">
-					// 	<img src="../../assets/icons/png/jumper.png" alt="jumper">
-					// 	<img src="../../assets/icons/png/shoes.png" alt="shoes">
-					// 	<img src="../../assets/icons/png/socks.png" alt="socks">
-					// 	<img src="../../assets/icons/png/trousers.png" alt="trousers">
-					// </div>
-
 				}
-
+				
 				<div class={ style.details }></div>
 
 				<div class= { style_iphone.container }>
@@ -76,23 +96,6 @@ export default class Iphone extends Component {
 				</div>
 			</div>
 		);
-	}
-
-	// function to try and show the clothing icon based on weather.  
-	// Needs to be turned into array or object:key?
-	render: function() {
-		var clothingicon;
-
-		if(this.temp_c > 10){
-			clothingicon = <img src{../../assets/icons/png/shorts.png}>
-		} else {
-			clothingicon = <img src{../../assets/icons/png/trousers.png}>
-		}
-		return (
-			<div class={ style.icons }>
-				{clothingicon}
-			</div>
-		)
 	}
 
 	parseResponse = (parsed_json) => {
@@ -113,7 +116,17 @@ export default class Iphone extends Component {
 			wind: wind_string,
 			rain: precip_today_metric,
 			humidity: relative_humidity,
-			icon: icon_url
+			icon: icon_url,
+			// Shorts: shorts,
+			// Hoodie: hoodie,
+			// Tshirt: tshirt,
+			// Gloves:gloves,
+			// Hat: hat,
+			// Jacket: jacket,
+			// Jumper: jumper,
+			// Shoes: shoes,
+			// Socks: socks,
+			// Trousers: trousers,
 		});
 	}
 }

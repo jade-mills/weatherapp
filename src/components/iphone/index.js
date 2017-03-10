@@ -7,6 +7,17 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
+//import icons for sports bar
+import Shorts from '../../assets/icons/png/shorts.png';
+import Hoodie from '../../assets/icons/png/hoodie.png';
+import Tshirt from '../../assets/icons/png/tshirt.png';
+import Gloves from '../../assets/icons/png/tshirt.png';
+import Hat from '../../assets/icons/png/hat.png';
+import Jacket from '../../assets/icons/png/jacket.png';
+import Jumper from '../../assets/icons/png/jumper.png';
+import Shoes from '../../assets/icons/png/shoes.png';
+import Socks from '../../assets/icons/png/socks.png';
+import Trousers from '../../assets/icons/png/trousers.png';
 
 export default class Iphone extends Component {
 	// a constructor with initial set states
@@ -15,7 +26,17 @@ export default class Iphone extends Component {
 		// temperature state
 		this.state.temp = "";
 		// button display state
-		this.setState({ display: true });	
+		this.setState({ display: true });
+		shorts,
+		Hoodie,
+		Tshirt,
+		Gloves,
+		Hat,
+		Jacket,
+		Jumper,
+		Shoes,
+		Socks,
+		Trousers	
 	}
 
 	// a call to fetch weather data via wunderground
@@ -46,31 +67,32 @@ export default class Iphone extends Component {
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
-
-		const shorts = () => (
-  		<img src="../../assets/icons/png/shorts.png" />
-		);
-		const hat = () => (
-  		<img src="../../assets/icons/png/hat.png" />
-		);
-		const tshirt = () => (
-  		<img src="../../assets/icons/png/tshirt.png" />
-		);
-		const shoes = () => (
-  		<img src="../../assets/icons/png/shoes.png" />
-		);
-		const trousers = () => (
-  		<img src="../../assets/icons/png/trousers.png" />
-		);
-		const gloves = () => (
-  		<img src="../../assets/icons/png/gloves.png" />
-		);
-		const socks = () => (
-  		<img src="../../assets/icons/png/socks.png" />
-		);
-		const jacket = () => (
-  		<img src="../../assets/icons/png/jacket.png" />
-		);
+		const {tshirt, shorts, shoes, hat} = this.heat
+		const {socks, trousers, jacket, gloves} = this.cold
+		// const shorts = () => (
+  // 		<img src="../../assets/icons/png/shorts.png" />
+		// );
+		// const hat = () => (
+  // 		<img src="../../assets/icons/png/hat.png" />
+		// );
+		// const tshirt = () => (
+  // 		<img src="../../assets/icons/png/tshirt.png" />
+		// );
+		// const shoes = () => (
+  // 		<img src="../../assets/icons/png/shoes.png" />
+		// );
+		// const trousers = () => (
+  // 		<img src="../../assets/icons/png/trousers.png" />
+		// );
+		// const gloves = () => (
+  // 		<img src="../../assets/icons/png/gloves.png" />
+		// );
+		// const socks = () => (
+  // 		<img src="../../assets/icons/png/socks.png" />
+		// );
+		// const jacket = () => (
+  // 		<img src="../../assets/icons/png/jacket.png" />
+		// );
 
 		// display all weather data
 		return (
@@ -85,7 +107,7 @@ export default class Iphone extends Component {
 						<div class={ style.rain }>{this.state.rain}</div>
 						<div class={ style.humidity }>{this.state.humidity}</div>
 						<img class={style.icon} src= { this.state.icon}></img>
-						<div {...shorts}/>
+						<div {...this.heat} />
 					</div>
 				}
 				
@@ -116,17 +138,7 @@ export default class Iphone extends Component {
 			wind: wind_string,
 			rain: precip_today_metric,
 			humidity: relative_humidity,
-			icon: icon_url,
-			// Shorts: shorts,
-			// Hoodie: hoodie,
-			// Tshirt: tshirt,
-			// Gloves:gloves,
-			// Hat: hat,
-			// Jacket: jacket,
-			// Jumper: jumper,
-			// Shoes: shoes,
-			// Socks: socks,
-			// Trousers: trousers,
+			icon: icon_url
 		});
 	}
 }
